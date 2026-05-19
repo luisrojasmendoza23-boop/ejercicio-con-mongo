@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const Proyecto = require("../Modelo/Proyecto");
+const proyecto = require("../Modelo/Proyecto");
 
 router.post("/", async (req, res) => {
 
     try {
 
-        const nuevoProyecto = new proyecto(req.body);
+        const nuevoproyecto = new proyecto(req.body);
 
         await nuevoproyecto.save();
 
