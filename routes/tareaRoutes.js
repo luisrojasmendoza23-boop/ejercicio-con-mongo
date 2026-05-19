@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-const Tarea = require("../Modelo/Tarea");
+const tarea = require("../Modelo/Tarea");
 
 router.post("/", async (req, res) => {
 
     try {
 
-        const nuevaTarea = new Tarea(req.body);
+        const nuevatarea = new Tarea(req.body);
 
-        await nuevaTarea.save();
+        await nuevatarea.save();
 
-        res.json(nuevaTarea);
+        res.json(nuevatarea);
 
 
     } catch (error) {
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
 
-    const tarea = await Tarea.find()
+    const tarea = await tarea.find()
     .populate("Asignado");
 
     res.json(tareas);
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
 
-    const tarea = await Tarea.findById(
+    const tarea = await tarea.findById(
         req.params.id)
         .populate("Asignado");
 
@@ -38,7 +38,7 @@ router.get("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
 
-    const tarea = await Tarea.findByIdAndUpdate(
+    const tarea = await tarea.findByIdAndUpdate(
         req.params.id,
         req.body,
         {new: true}
@@ -49,7 +49,7 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
 
-    await Tarea.findByIdAndDelete(req.params.id);
+    await tarea.findByIdAndDelete(req.params.id);
         
     res.json({texto: "Tarea Eliminada"});
 });
