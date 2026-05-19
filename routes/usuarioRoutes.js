@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const bcrypt = require("bcryptjs");
-const Usuario = require("../Modelo/Usuario");
+const usuario = require("../Modelo/usuario");
 
 router.post("/", async (req, res) => {
 
@@ -10,15 +10,15 @@ router.post("/", async (req, res) => {
 
         const hash = await bcrypt.hash(req.body.contraseña, 10);
 
-        const nuevoUsuario = new Usuario({
+        const nuevousuario = new usuario({
             nombre: req.body.nombre,
             email: req.body.email,
             contraseña: hash
         });
 
-        await nuevoUsuario.save();
+        await nuevousuario.save();
 
-        res.json(nuevoUsuario);
+        res.json(nuevousuario);
 
 
     } catch (error) {
@@ -28,13 +28,13 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
 
-    const usuario = await Usuario.find();
+    const usuario = await usuario.find();
     res.json(usuario);
 });
 
 router.get("/:id", async (req, res) => {
 
-    const usuarios = await Usuario.findById(
+    const usuarios = await usuario.findById(
         req.params.id);
 
     res.json("usuario");
@@ -42,7 +42,7 @@ router.get("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
 
-    const usuario = await Usuario.findByIdAndUpdate(
+    const usuario = await usuario.findByIdAndUpdate(
         req.params.id,
         req.body,
         {new: true}
@@ -53,7 +53,7 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
 
-    const usuario = await Usuario.findByIdAndDelete(req.params.id);
+    const usuario = await usuario.findByIdAndDelete(req.params.id);
         
     res.json({texto: "Eliminado"});
 });
