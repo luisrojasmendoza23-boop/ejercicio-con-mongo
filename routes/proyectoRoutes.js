@@ -7,11 +7,11 @@ router.post("/", async (req, res) => {
 
     try {
 
-        const nuevoProyecto = new Proyecto(req.body);
+        const nuevoProyecto = new proyecto(req.body);
 
-        await nuevoProyecto.save();
+        await nuevoproyecto.save();
 
-        res.json(nuevoProyecto);
+        res.json(nuevoproyecto);
 
 
     } catch (error) {
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
 
-    const proyecto = await Proyecto.find()
+    const proyecto = await proyecto.find()
     .populate("tareas");
 
     res.json(proyectos);
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
 
-    const proyecto = await Proyecto.findById(
+    const proyecto = await proyecto.findById(
         req.params.id)
         .populate("tareas");
 
@@ -38,7 +38,7 @@ router.get("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
 
-    const proyecto = await Proyecto.findByIdAndUpdate(
+    const proyecto = await proyecto.findByIdAndUpdate(
         req.params.id,
         req.body,
         {new: true}
@@ -49,7 +49,7 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
 
-    await Proyecto.findByIdAndDelete(req.params.id);
+    await proyecto.findByIdAndDelete(req.params.id);
         
     res.json({texto: "Proyecto Eliminado"});
 });
