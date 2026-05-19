@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Tareachema = new mongoose.Schema({
+const tareachema = new mongoose.Schema({
     titulo: String,
 
     descripcion: String,
@@ -26,5 +26,5 @@ const Tareachema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Tarea", Tareachema);
+module.exports = mongoose.model("Tarea", tareachema);
     
