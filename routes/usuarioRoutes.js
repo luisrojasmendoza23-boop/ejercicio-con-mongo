@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
 
-    const usuarios = await usuario.findById(
+    const usuario = await usuario.findById(
         req.params.id);
 
     res.json("usuario");
