@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
 
     try {
 
-        const nuevatarea = new Tarea(req.body);
+        const nuevatarea = new tarea(req.body);
 
         await nuevatarea.save();
 
